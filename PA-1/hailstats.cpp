@@ -34,6 +34,12 @@ int main()
   for(int i=start; i<= end; i++){
     num = i;
     length = 0;
+    
+    // In the case that i is one
+    if(num==1){
+      length = 0;
+    }
+    
     // Running
     while(num!=1){
       if(num%2==1){
@@ -45,16 +51,13 @@ int main()
         length++;
       }
     }
-    // In the case that i is one
-    if(num==1){
-      length = 0;
-    }
+    
     // Set the max and mins
     if(length>maxLength){
       maxLength = length;
       max = i;
     }
-    else if(length<minLength){
+    if(length<minLength){
       minLength = length;
       min = i;
     }
