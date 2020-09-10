@@ -48,7 +48,7 @@ void draw_ellipse(int cy, int cx, int height, int width) {
     // x-coordinate -> (length = xcos(theta))
     // begins at the left -> x = left + length/2
     int x = cx + (int)(rx*cos(a));
-    // y-coordinate -> (height = ycos(theta))
+    // y-coordinate -> (height = ysin(theta))
     // begins at the top -> y = top - height/2
     int y = cy - (int)(ry*sin(a));
     
