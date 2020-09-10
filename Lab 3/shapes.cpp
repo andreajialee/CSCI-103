@@ -8,7 +8,7 @@
  * rectangle function if a 0 is inputted, the ellipse function
  * if a 1 is inputted, and saves the image if a 2 is inputted.
  ********************************************************/
- 
+
 #include <iostream>
 #include <cmath>
 #include "bmplib.h"
@@ -21,9 +21,9 @@ unsigned char image[SIZE][SIZE];
 // Fill in this function:
 void draw_rectangle(int top, int left, int height, int width) {
   for(int i=top; i<=top+height; i++){
-    if(i>=0){
+    if(i>=0 && i<=255){ // Check if it is in bounds
       for(int j=left; j<=left+width; j++){
-        if(j>=0){
+        if(j>=0 && j<=255){ // Check if it is in bounds
           // Print Top & Bottom
           if(i==top||i==top+height){
             image[i][j]=0;
@@ -41,19 +41,19 @@ void draw_rectangle(int top, int left, int height, int width) {
 // Fill in this function:
 void draw_ellipse(int cy, int cx, int height, int width) {
   // Find radius
-  double rx = width/2.0;
+  double rx = width/2.0; 
   double ry = height/2.0;
   // Goes from 0 to 2pi
   for(double a=0; a<=(2*M_PI); a+=.01){
-    // x-coordinate - (length = xcos(theta))
+    // x-coordinate -> (length = xcos(theta))
     // begins at the left -> x = left + length/2
     int x = cx + (int)(rx*cos(a));
-    // y-coordinate - (height = ycos(theta))
+    // y-coordinate -> (height = ycos(theta))
     // begins at the top -> y = top - height/2
     int y = cy - (int)(ry*sin(a));
     
     // Check if it is in bounds & print
-    if(x>0 && x<255 && y>0 && y<255){
+    if(x>=0 && x<=255 && y>=0 && y<=255){
       image[y][x] = 0;
     }
     
@@ -70,23 +70,28 @@ int main() {
    }
   
    // Main program loop here
-  int pick=0, a, b, c, d;
+  int pick = 0, a, b, c, d;
   
+  // Prompt the user
   cout << "To a draw a rectangle, enter: 0 top left height width" << endl;
   cout << "To a draw an ellipse, enter: 1 cy cx height width" << endl;
   cout << "To save your drawing as \"output.bmp\" and quit, enter:2" << endl;
   
+  // If pick != 2, then run through other options
   while(pick!=2){
     cin >> pick;
     switch(pick){
+      // Draw Rectangle
       case 0:
         cin >> a >> b >> c >> d;
         draw_rectangle(a, b, c, d);
         break;
+      // Draw Ellipse
       case 1:
         cin >> a >> b >> c >> d;
         draw_ellipse(a, b, c, d);
         break;
+      // Exit & Save
       case 2:
         break;  
     }
@@ -97,4 +102,3 @@ int main() {
    
    return 0;
 }
-
