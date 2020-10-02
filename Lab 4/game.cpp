@@ -1,5 +1,5 @@
 /*
-File Name: game.cpp
+CSCI-103 Lab 4: Game
 Name: Andrea Lee
 Email: alee9707@usc.edu
 
