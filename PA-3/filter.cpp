@@ -1,3 +1,13 @@
+/*
+CSCI 103 PA 3: Filter
+Name: Andrea Lee
+Email: alee9707@usc.edu
+
+This program will implement the three filters:
+sobel, gaussian, and unsharp, allowing the user to
+choose one filter using command line arguments
+*/
+
 #include <iostream>
 #include <cmath>
 #include <cstring>
@@ -173,8 +183,8 @@ void convolve(unsigned char out[][SIZE][RGB], unsigned char in[][SIZE][RGB],
   for(int y=0 ;y<SIZE ;y++){
     for(int x=0 ;x<SIZE ;x++){
       for(int k=0;k<RGB;k++){
-         for(int i=0 ; i<=N ; i++){
-            for(int j=0 ; j<=N ; j++){
+         for(int i=0 ; i<N ; i++){
+            for(int j=0 ; j<N ; j++){
                   temp[y][x][k] += (int)(padded[y+i][x+j][k]*kernel[i][j]);
             }
          }
@@ -294,18 +304,20 @@ void gaussian(double k[][11], int N, double sigma){
       k[i][j]=k[i][j]/sum;
     }
   }
+  
 }
 void gaussian_filter(unsigned char out[][SIZE][RGB],
                      unsigned char in[][SIZE][RGB], int N, double sigma){
   double k[11][11];
-  // Iinitialize the Kernel
-  for(int i=0; i<N; i++){
-    for(int j=0; j<N; j++){
+  // initialize the Kernel
+  for(int i=0; i<11; i++){
+    for(int j=0; j<11; j++){
       k[i][j]=0;
     }
   }
   gaussian(k, N, sigma);
   convolve(out, in, N, k);
+
 }
 void unsharp(unsigned char out[][SIZE][RGB], unsigned char in[][SIZE][RGB],
              int N,double sigma, double alpha){
@@ -324,7 +336,7 @@ void unsharp(unsigned char out[][SIZE][RGB], unsigned char in[][SIZE][RGB],
   
   for(int i=0; i<SIZE; i++){
     for(int j=0; j<SIZE; j++){
-      for(int k=0; k<SIZE; k++){
+      for(int k=0; k<RGB; k++){
         double num = (int)in[i][j][k] + (alpha*(double)map[i][j][k]);
         if(num>255){
           num=255;
