@@ -1,12 +1,6 @@
-/*
-CSCI-103 Lab 4: Game
-Name: Andrea Lee
-Email: alee9707@usc.edu
-
-Hangman game illustrates string library functions, 
-character arrays, arrays of pointers, etc.
-*/
-
+// game.cpp
+// Hangman game illustrates string library functions, 
+// character arrays, arrays of pointers, etc.
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
