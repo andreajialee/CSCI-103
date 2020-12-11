@@ -1,0 +1,7 @@
+Condo
+Wall 3
+r 0.5 5
+Floor 3
+t 3 2
+Window 7
+c 

@@ -1,0 +1,3 @@
+14-11-2020 01-03-37: Info: Starting Takeoff
+14-11-2020 01-03-37: Error: ERR 003 - Error while creating a circle.
+14-11-2020 01-03-37: Info: Finished Takeoff
